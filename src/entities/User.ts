@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BaseEntity } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BaseEntity, ManyToOne } from 'typeorm';
+import { Partido } from './Partido';
 
 @Entity()
 export class User extends BaseEntity {
@@ -31,4 +32,7 @@ export class User extends BaseEntity {
 
     @UpdateDateColumn()
     upadatedAt: Date;
+
+    @ManyToOne(() => Partido, (partido) => partido.users)
+    partido: Partido
 }

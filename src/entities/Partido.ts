@@ -1,4 +1,6 @@
-import {BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm'
+import {BaseEntity, Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm'
+import { Votos } from './Votos';
+import { User } from './User';
 
 @Entity()
 export class Partido extends BaseEntity {
@@ -18,4 +20,10 @@ export class Partido extends BaseEntity {
 
     @UpdateDateColumn()
     upadatedAt: Date;
+
+    @OneToOne(() => Votos, (votos) => votos.partido)
+    votos: Votos
+
+    @OneToMany(() => User, (user) => user.partido)
+    users: User[]
 }

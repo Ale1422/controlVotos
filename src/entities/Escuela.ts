@@ -1,4 +1,5 @@
-import {BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm'
+import {BaseEntity, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm'
+import { Mesa } from './Mesa';
 
 @Entity()
 export class Escuela extends BaseEntity {
@@ -20,4 +21,7 @@ export class Escuela extends BaseEntity {
 
     @UpdateDateColumn()
     upadatedAt: Date;
+
+    @OneToMany(() => Mesa, (mesa) => mesa.escuela)
+    mesas: Mesa[]
 }
